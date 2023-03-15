@@ -1,0 +1,41 @@
+{
+    "executor": "python main.py",
+    "cuda": [2, 3],
+    "concurrency": 4,
+    "configs": {
+      "==base==": [
+        "--mode", [ "attack_epochs"],
+        "--use_benchmark", ["False"],
+        "--modify_ratio", ["0.2"],
+        "--attack_method", ["textfooler"],
+        "--evaluation_data_type", ["test", "dev"],
+        "--training_type", ["l2rew"],
+        "--sgd_lr", ["2e-5"],
+        "--attack_epoch_type", ["last"],
+        "--epochs", "11",
+        "--batch_size", "32",
+        "--epsilon", "1e-8",
+        "--valid_batch_size","32",
+        "--augment_ratio", ["0.5"],
+        "--valid_iter","10",
+        "--alpha",["0"],
+        "--attack_numbers", ["500"]
+      ],
+      "==more==": [
+        [
+          "--epochs_update_valid","2",
+          "--dataset_name","agnews",
+          "--base_aug",["False"],
+          "--seed", ["42"],
+          "--attack_epoch", "{range(0, 11, 1)}"
+        ],
+        [
+          "--epochs_update_valid","2",
+          "--dataset_name","agnews",
+          "--base_aug",["False"],
+          "--seed", ["21"],
+          "--attack_epoch", "{range(0, 11, 1)}"
+        ]
+      ]
+    }
+  }
